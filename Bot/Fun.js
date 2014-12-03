@@ -107,7 +107,7 @@ var blockedSongs = [
 var blockedArtists = [
 "Rick Astley",
 "Miley Cyrus",
-"Eduard Khil",
+"One Direction",
 "Justin Bieber",
 "Lil wayne",
 "Rebecca Black"
@@ -120,28 +120,17 @@ Funbot.filters.commandWords = [".linkin",".say",".test",".ping",".marco",".rewar
 
 // Fun misc
 Funbot.misc.tacos = ["blunt","kush","Chemo","Locoweed","marijuana","Ganja"];
-Funbot.misc.cookie = ["a chocolate chip cookie", "a sugar cookie", "an oatmeal raisin cookie", "a 'special' brownie", "an animal cracker", "a scooby snack", "a blueberry muffin", "a cupcake","Strawberry Sunday", "Chocolate Chip Icecream Cone", "Cookie Dough Triple Scoop ", "Mint Chocolate Chip Icecream Cone", "Chocolate Icecream Sunday", "Banana Split with Whipped Cream", "Vanilla Icecream Cone with Sprinkles ", "Bubblegum Flavored Popcicle"];
+Funbot.misc.cookie = ["un muffin au raisins", "un cookie",];
 Funbot.misc.ball = [
-" [:8ball:] It is certain",
-" [:8ball:] It is decidedly so",
-" [:8ball:] Without a doubt",
-" [:8ball:] Yes definitely",
-" [:8ball:] You may rely on it",
-" [:8ball:] As I see it yes",
-" [:8ball:] Most likely",
-" [:8ball:] Outlook good",
-" [:8ball:] Yes",
-" [:8ball:] Signs point to yes :trollface:",
-" [:8ball:] Reply hazy try again",
-" [:8ball:] Ask again later",
-" [:8ball:] Better not tell you now",
-" [:8ball:] Cannot predict now",
-" [:8ball:] Concentrate and ask again",
-" [:8ball:] Don't count on it",
-" [:8ball:] My reply is no",
-" [:8ball:] My sources say no",
-" [:8ball:] Outlook not so good",
-" [:8ball:] Very doubtful"];
+" [:8ball:] Oui",
+" [:8ball:] Définitivement, oui",
+" [:8ball:] Sans aucun doute !",
+" [:8ball:] T'as pas une question plus intélligente ?",
+" [:8ball:] C'est un mystère pour moi",
+" [:8ball:] Ne compte pas là dessus",
+" [:8ball:] Non",
+" [:8ball:] D'après mes sources, non",
+" [:8ball:] J'hésite.."];
 
 Funbot.misc.ht = ["My magic coins says: Tails", "My magic coin says: Heads"];
 
@@ -321,7 +310,7 @@ $('#woot').click();
  
 function UserJoin(user)
 {
-var JoinMsg = ["@user has joined!","welcome, @user!","Hey there, @user!","Glad you came by, @user"];
+var JoinMsg = ["@user vient de nous rejoindre!","Bienvenue, @user!","Hey, @user!","Content de te voir, @user"];
 r = Math.floor(Math.random() * JoinMsg.length);
 API.sendChat(JoinMsg[r].replace("user", user.username));
 };
@@ -420,7 +409,7 @@ botMethods.cleanString = function(string){
     var songLen = (parseInt(songLenParts[0].substring(1)) * 60) + parseInt(songLenParts[1]);
     if (songLen >= songBoundary)
     {
-        window.setTimeout(skipLongSong, 1000 * songBoundary);
+        window.setTimeout(skipLongSong, 480 * songBoundary);
     }
 }
  
@@ -740,11 +729,11 @@ function chatMe(msg)
  
                    case "whywoot":
                         if(API.getUsers(data.un, PlugMod) || API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)){
-                            API.sendChat("Plug gives you 1 point for wooting the current song if you don't like the song i suggest you remain neutral");
+                            API.sendChat("Vous pouvez appuyer sur Woot! si vous aimez cette chanson. Montrez votre présence !");
                         }else if(command[1].indexOf("@") > -1){
-                            API.sendChat(command[1]+" Plug gives you 1 point for wooting the current song if you don't like the song i suggest you remain neutral");
+                            API.sendChat(command[1]+" Vous pouvez appuyer sur Woot! si vous aimez cette chanson. Montrez votre présence !");
                         }else{
-                            API.sendChat("Plug gives you 1 point for wooting the current song if you don't like the song i suggest you remain neutral");
+                            API.sendChat("Vous pouvez appuyer sur Woot! si vous aimez cette chanson. Montrez votre présence !");
                         }
                         if(API.getUsers(data.un, Funbot.admins) || API.getUsers(data.un, PlugMod)){
                             Funbot.misc.ready = false;
@@ -754,11 +743,11 @@ function chatMe(msg)
  
                    case "whymeh":
                        if(API.getUsers(data.un, PlugMod) || API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)){
-                            API.sendChat("Reserve Mehs for songs that are a) extremely overplayed b) off genre c) absolutely god awful or d) troll songs. ");
+                            API.sendChat("Vous pouvez appuyer sur Meh si la chanson est jouée trop souvent, si vous ne l'aimez pas, ou si c'est un troll évident. Les contenus innapropriés également. ");
                         }else if(command[1].indexOf("@") > -1){
-                            API.sendChat(command[1]+" Reserve Mehs for songs that are a) extremely overplayed b) off genre c) absolutely god awful or d) troll songs. ");
+                            API.sendChat(command[1]+" Vous pouvez appuyer sur Meh si la chanson est jouée trop souvent, si vous ne l'aimez pas, ou si c'est un troll évident. ");
                         }else{
-                            API.sendChat("Reserve Mehs for songs that are a) extremely overplayed b) off genre c) absolutely god awful or d) troll songs. ");
+                            API.sendChat("RVous pouvez appuyer sur Meh si la chanson est jouée trop souvent, si vous ne l'aimez pas, ou si c'est un troll évident. Les contenus innapropriés également. ");
                         }
                         if(API.getUsers(data.un, Funbot.admins) || API.getUsers(data.un, PlugMod)){
                             Funbot.misc.ready = false;
@@ -768,9 +757,9 @@ function chatMe(msg)
  
                    case "help":
                         if(typeof command[1] == "undefined"){
-                            API.sendChat("Greetings! Create a playlist and populate it with songs from either YouTube or Soundcloud. Click the 'Join Waitlist' button and wait your turn to play music.");
+                            API.sendChat("Bonjour! Créer une playlist et remplis la de vidéos YouTube. Clique sur 'Rejoindre la liste d'attente' et attends ton tour !");
                                 setTimeout(function(){
-                            API.sendChat("Ask a mod if you're unsure about your song choice.");
+                            API.sendChat("Demandez à un videur si vous n'êtes pas sûr d'avoir le droit de passer un certain genre.");
                          }, 650);
                         }else if(command[1].indexOf("@") > -1){
                             API.sendChat(command[1]+ "Greetings! Create a playlist and populate it with songs from either YouTube or Soundcloud. Click the 'Join Waitlist' button and wait your turn to play music.");
